@@ -25,7 +25,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="48"/>
                                 <color key="backgroundColor" red="0.88199443720000004" green="0.062312302829999999" blue="0.12804824879999999" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="guR-0j-wZe">
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search for Pokemon" translatesAutoresizingMaskIntoConstraints="NO" id="guR-0j-wZe">
                                 <rect key="frame" x="-7" y="48" width="612" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
@@ -84,6 +84,7 @@
                     </view>
                     <connections>
                         <outlet property="collection" destination="peS-K4-yzk" id="Swk-V2-rM2"/>
+                        <outlet property="searchBar" destination="guR-0j-wZe" id="sdd-GS-dO7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
