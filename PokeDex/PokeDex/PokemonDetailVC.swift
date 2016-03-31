@@ -37,6 +37,18 @@ class PokemonDetailVC: UIViewController {
         super.viewDidLoad()
         
         testname.text = pokemon.getName
+        self.mainImg.image = UIImage(named: "\(pokemon.getPokedexId)")
+        
+        pokemon.downloadPokemonDetails { () -> () in
+            self.heightLabel.text = self.pokemon.getHeight
+            self.weightLabel.text = self.pokemon.getWeight
+            self.defenseLabel.text = self.pokemon.getDefense
+            self.baseAttackLabel.text = self.pokemon.getAttack
+
+            
+        }
+        
+        
 
         // Do any additional setup after loading the view.
     }
