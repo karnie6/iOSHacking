@@ -10,9 +10,8 @@ import UIKit
 
 class CourseCell: UICollectionViewCell {
     
-    @IBOutlet weak var courseButton: UIButton!
-    
     var course: Course!
+    @IBOutlet weak var courseLabel: UILabel!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -21,7 +20,7 @@ class CourseCell: UICollectionViewCell {
     
     func configureCell(course: Course) {
         self.course = course;
-        self.courseButton.setTitle(self.course.getName, forState: .Normal)
+        self.courseLabel.text = self.course.getName
     }
     
 }

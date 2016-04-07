@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:FireChat-Swift.xcodeproj">
+      location = "self:/Users/karthiksenthil/Hacking/iOS/albie2/Albie.xcodeproj">
    </FileRef>
 </Workspace>

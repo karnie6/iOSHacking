@@ -3,10 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 47;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49154E9F1CB57F71001673C1 /* AlbieLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49154E9E1CB57F71001673C1 /* AlbieLaunchScreen.storyboard */; };
+		49154EA31CB5E1AB001673C1 /* AssignmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49154EA21CB5E1AB001673C1 /* AssignmentsViewController.swift */; };
+		49154EA51CB5F964001673C1 /* Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49154EA41CB5F964001673C1 /* Assignment.swift */; };
 		49F9CB7B1CB3716C008CC2C7 /* CoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F9CB7A1CB3716C008CC2C7 /* CoursesViewController.swift */; };
 		49F9CB7D1CB37250008CC2C7 /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F9CB7C1CB37250008CC2C7 /* CourseCell.swift */; };
 		49F9CB7F1CB3733F008CC2C7 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F9CB7E1CB3733F008CC2C7 /* Course.swift */; };
@@ -94,6 +97,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		49154E9E1CB57F71001673C1 /* AlbieLaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AlbieLaunchScreen.storyboard; sourceTree = "<group>"; };
+		49154EA21CB5E1AB001673C1 /* AssignmentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssignmentsViewController.swift; sourceTree = "<group>"; };
+		49154EA41CB5F964001673C1 /* Assignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assignment.swift; sourceTree = "<group>"; };
 		49F9CB7A1CB3716C008CC2C7 /* CoursesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesViewController.swift; sourceTree = "<group>"; };
 		49F9CB7C1CB37250008CC2C7 /* CourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCell.swift; sourceTree = "<group>"; };
 		49F9CB7E1CB3733F008CC2C7 /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
@@ -258,6 +264,7 @@
 		5FFF76B0199C191F00AE0269 = {
 			isa = PBXGroup;
 			children = (
+				49154E9E1CB57F71001673C1 /* AlbieLaunchScreen.storyboard */,
 				5F5814D5199E8D65000E0E87 /* Frameworks */,
 				5FFF76BB199C191F00AE0269 /* FireChat-Swift */,
 				5FFF76CE199C191F00AE0269 /* FireChat-SwiftTests */,
@@ -291,6 +298,8 @@
 				49F9CB7C1CB37250008CC2C7 /* CourseCell.swift */,
 				49F9CB7E1CB3733F008CC2C7 /* Course.swift */,
 				49F9CB801CB376D9008CC2C7 /* Constants.swift */,
+				49154EA21CB5E1AB001673C1 /* AssignmentsViewController.swift */,
+				49154EA41CB5F964001673C1 /* Assignment.swift */,
 			);
 			path = "FireChat-Swift";
 			sourceTree = "<group>";
@@ -552,8 +561,8 @@
 					};
 				};
 			};
-			buildConfigurationList = 5FFF76B4199C191F00AE0269 /* Build configuration list for PBXProject "FireChat-Swift" */;
-			compatibilityVersion = "Xcode 3.2";
+			buildConfigurationList = 5FFF76B4199C191F00AE0269 /* Build configuration list for PBXProject "Albie" */;
+			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -592,6 +601,7 @@
 				5FFF77E7199C1F6C00AE0269 /* message_received.aiff in Resources */,
 				5FFF77DC199C1F6C00AE0269 /* bubble_min_tailless@2x.png in Resources */,
 				5FFF77E1199C1F6C00AE0269 /* bubble_tailless.png in Resources */,
+				49154E9F1CB57F71001673C1 /* AlbieLaunchScreen.storyboard in Resources */,
 				5FFF77DF199C1F6C00AE0269 /* bubble_stroked_tailless.png in Resources */,
 				5FFF77DE199C1F6C00AE0269 /* bubble_stroked@2x.png in Resources */,
 				5FFF7805199C1F6C00AE0269 /* JSQMessagesToolbarContentView.xib in Resources */,
@@ -625,9 +635,11 @@
 				49F9CB7D1CB37250008CC2C7 /* CourseCell.swift in Sources */,
 				5FFF77EF199C1F6C00AE0269 /* JSQMessagesViewController.m in Sources */,
 				5FFF77F9199C1F6C00AE0269 /* JSQMessagesCollectionView.m in Sources */,
+				49154EA51CB5F964001673C1 /* Assignment.swift in Sources */,
 				5FFF77F6199C1F6C00AE0269 /* JSQMessagesCollectionViewFlowLayoutInvalidationContext.m in Sources */,
 				5FFF7800199C1F6C00AE0269 /* JSQMessagesInputToolbar.m in Sources */,
 				5FFF77F2199C1F6C00AE0269 /* JSQMessagesBubbleImageFactory.m in Sources */,
+				49154EA31CB5E1AB001673C1 /* AssignmentsViewController.swift in Sources */,
 				5FFF7804199C1F6C00AE0269 /* JSQMessagesToolbarContentView.m in Sources */,
 				5FFF77ED199C1F6C00AE0269 /* UIView+JSQMessages.m in Sources */,
 				5FFF77FB199C1F6C00AE0269 /* JSQMessagesCollectionViewCellIncoming.m in Sources */,
@@ -767,17 +779,16 @@
 		5FFF76D6199C191F00AE0269 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "FireChat-Swift/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.albie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "FireChat-Swift/FireChat-Swift-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -788,17 +799,16 @@
 		5FFF76D7199C191F00AE0269 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "FireChat-Swift/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = com.firebase.albie;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "FireChat-Swift/FireChat-Swift-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -842,7 +852,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5FFF76B4199C191F00AE0269 /* Build configuration list for PBXProject "FireChat-Swift" */ = {
+		5FFF76B4199C191F00AE0269 /* Build configuration list for PBXProject "Albie" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5FFF76D3199C191F00AE0269 /* Debug */,

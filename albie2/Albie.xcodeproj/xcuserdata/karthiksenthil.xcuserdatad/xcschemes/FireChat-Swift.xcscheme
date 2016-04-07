@@ -17,7 +17,7 @@
                BlueprintIdentifier = "5FFF76B8199C191F00AE0269"
                BuildableName = "FireChat-Swift.app"
                BlueprintName = "FireChat-Swift"
-               ReferencedContainer = "container:FireChat-Swift.xcodeproj">
+               ReferencedContainer = "container:Albie.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
                BlueprintIdentifier = "5FFF76CA199C191F00AE0269"
                BuildableName = "FireChat-SwiftTests.xctest"
                BlueprintName = "FireChat-SwiftTests"
-               ReferencedContainer = "container:FireChat-Swift.xcodeproj">
+               ReferencedContainer = "container:Albie.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -45,7 +45,7 @@
             BlueprintIdentifier = "5FFF76B8199C191F00AE0269"
             BuildableName = "FireChat-Swift.app"
             BlueprintName = "FireChat-Swift"
-            ReferencedContainer = "container:FireChat-Swift.xcodeproj">
+            ReferencedContainer = "container:Albie.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -68,7 +68,7 @@
             BlueprintIdentifier = "5FFF76B8199C191F00AE0269"
             BuildableName = "FireChat-Swift.app"
             BlueprintName = "FireChat-Swift"
-            ReferencedContainer = "container:FireChat-Swift.xcodeproj">
+            ReferencedContainer = "container:Albie.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -87,7 +87,7 @@
             BlueprintIdentifier = "5FFF76B8199C191F00AE0269"
             BuildableName = "FireChat-Swift.app"
             BlueprintName = "FireChat-Swift"
-            ReferencedContainer = "container:FireChat-Swift.xcodeproj">
+            ReferencedContainer = "container:Albie.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

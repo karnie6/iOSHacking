@@ -10,19 +10,25 @@ import UIKit
 
 class CoursesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    @IBOutlet weak var courses: UICollectionView!
+    @IBOutlet var courses: UICollectionView!
     
     var coursesData = [Course]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        courses.delegate = self
-        courses.dataSource = self
+        /* Test Data */
+      //  let course = Course(name: "Test")
+     //   coursesData.append(course)
+    //    let course2 = Course(name: "Test2")
+  //      coursesData.append(course2)
+        
+        self.courses!.delegate = self
+        self.courses!.dataSource = self
         
         downloadCourseData()
-        print("DONE downloading")
-        print(coursesData.count)
+      //  print("DONE downloading")
+//print(coursesData.count)
         // Do any additional setup after loading the view.
     }
     
@@ -47,8 +53,8 @@ class CoursesViewController: UIViewController, UICollectionViewDelegate, UIColle
                     for course in coursesJson! {
                      
                     //print(course)
-                        if  let courseName = course["name"] as? String {
-                            let newCourse = Course(name: courseName)
+                        if  let courseName = course["name"] as? String, courseId = course["id"] as? Int {
+                            let newCourse = Course(name: courseName, id: courseId)
                             self.coursesData.append(newCourse)
                             print("Retrieved course \(courseName)")
                             
@@ -66,6 +72,17 @@ class CoursesViewController: UIViewController, UICollectionViewDelegate, UIColle
                     
                     
                     }
+                    
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.courses.reloadData()
+                    })
+                    
+                    //self.courses.reloadData()
+                    
+                 /*   dispatch_async(dispatch_get_main_queue(), ^{
+                        self.collectionView.reloadData()
+                        }); */
+
                     //json.
                  
                     
@@ -75,7 +92,7 @@ class CoursesViewController: UIViewController, UICollectionViewDelegate, UIColle
             }
             
            // completed()
-            self.courses.reloadData()
+            
         }
     
         task.resume()
@@ -84,11 +101,11 @@ class CoursesViewController: UIViewController, UICollectionViewDelegate, UIColle
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CourseCell", forIndexPath: indexPath) as? CourseCell {
             
-          //  let course : Course!
+            let course : Course!
             
-           // course = coursesData[indexPath.row]
+            course = coursesData[indexPath.row]
             
-                    let course = Course(name: "Test")
+          //          let course = Course(name: "Test")
             cell.configureCell(course)
             return cell
         }
@@ -96,19 +113,15 @@ class CoursesViewController: UIViewController, UICollectionViewDelegate, UIColle
         return UICollectionViewCell()
     }
     
-/*    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        var poke: Pokemon!
+        var course: Course!
         
-        if inSearchMode {
-            poke = filteredPokemons[indexPath.row]
-        } else {
-            poke = pokemons[indexPath.row]
-        }
+        course = coursesData[indexPath.row]
         
-        performSegueWithIdentifier("PokemonDetailVC", sender: poke)
+        performSegueWithIdentifier("AssignmentSegue", sender: course)
         
-    } */
+    }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return coursesData.count
@@ -119,7 +132,17 @@ class CoursesViewController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(105, 105)
+        return CGSizeMake(355, 85)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "AssignmentSegue" {
+            if let assignmentVC = segue.destinationViewController as? AssignmentsViewController {
+                if let course = sender as? Course {
+                    assignmentVC.course = course
+                }
+            }
+        }
     }
 
 
