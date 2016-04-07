@@ -167,10 +167,6 @@ class MessagesViewController: JSQMessagesViewController {
                     print("ERROR OCCURED!")
                     return
                 }
-            
-   /*             if let responseJSON = try NSJSONSerialization.JSONObjectWithData((data?)!, options: nil) as? [String:AnyObject]{
-                    println(responseJSON)
-                } */
             }
         
             task.resume()
@@ -178,9 +174,40 @@ class MessagesViewController: JSQMessagesViewController {
             print("Could not send to Slack")
         }
 
-
-        //
     }
+    
+    func sendToSlack(text: String!, link: String!, imageUrl: String!) {
+        
+        // prepare json data
+        
+        do {
+            let json = ["text": text, "unfurl_links": true, "unfurl_media": true, "attachments": ["title": "Click here to view the assignment", "title_link": link, "image_url": imageUrl]]
+            let jsonData = try NSJSONSerialization.dataWithJSONObject(json, options: .PrettyPrinted)
+            
+            // create post request
+            let url = NSURL(string: "https://hooks.slack.com/services/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")!
+            let request = NSMutableURLRequest(URL: url)
+            request.HTTPMethod = "POST"
+            
+            // insert json data to the request
+            request.HTTPBody = jsonData
+            
+            let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ data,response,error in
+                
+                if error != nil {
+                    //   print(error.localizedDescription)
+                    print("ERROR OCCURED!")
+                    return
+                }
+            }
+            
+            task.resume()
+        } catch {
+            print("Could not send to Slack")
+        }
+        
+    }
+
     
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, sender: String!, date: NSDate!) {
         JSQSystemSoundPlayer.jsq_playMessageSentSound()

@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FireChat-Swift/AssignmentsViewController.swift"
-            timestampString = "481693529.689101"
+            timestampString = "481739970.654453"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
             landmarkName = "downloadAssignmentData()"
             landmarkType = "5">
          </BreakpointContent>

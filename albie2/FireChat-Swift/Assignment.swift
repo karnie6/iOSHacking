@@ -13,6 +13,7 @@ class Assignment {
     private var name: String!
     private var id: Int!
     private var description: String!
+    private var url: String!
 
     var getName: String {
         return self.name
@@ -25,15 +26,20 @@ class Assignment {
     var getDescription: String {
         return self.description
     }
+    
+    var getUrl: String {
+        return self.url
+    }
 
     init(name: String, id: Int) {
         self.name = name;
         self.id = id;
     }
     
-    init(name: String, id: Int, description: String) {
+    init(name: String, id: Int, description: String, url: String) {
         self.name = name;
         self.id = id;
         self.description = description;
+        self.url = url;
     }
 }

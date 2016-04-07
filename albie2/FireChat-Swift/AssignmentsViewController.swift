@@ -51,12 +51,14 @@ class AssignmentsViewController: UIViewController, UITableViewDelegate, UITableV
         assignment = assignments[indexPath.row]
         
         if let assignmentDescription:String = assignment?.getDescription {
-            let assignmentUrl:String = returnFirstLink(assignmentDescription)
-            performSegueWithIdentifier("MessagingSegue", sender: assignmentUrl)
+            let firstLinkInAssignment:String = returnFirstLink(assignmentDescription)
+            let firstImageInAssignment:String = returnFirstImage(assignmentDescription)
+            performSegueWithIdentifier("MessagingSegue", sender: assignment)
         }
     }
     
     func returnFirstLink(assignmentDescription: String) -> String {
+        
         if let doc = Kanna.HTML(html: assignmentDescription, encoding: NSUTF8StringEncoding) {
             //print(doc.title)
             
@@ -64,6 +66,22 @@ class AssignmentsViewController: UIViewController, UITableViewDelegate, UITableV
             for link in doc.xpath("//a | //link") {
                 if let assignmentHref:String = link["href"]! {
                     return assignmentHref
+                }
+            }
+        }
+        
+        return ""
+    }
+    
+    func returnFirstImage(assignmentDescription: String) -> String {
+        
+        if let doc = Kanna.HTML(html: assignmentDescription, encoding: NSUTF8StringEncoding) {
+            //print(doc.title)
+            
+            // Search for nodes by XPath
+            for image in doc.xpath("//img") {
+                if let imageHref:String = image["src"]! {
+                    return imageHref
                 }
             }
         }
@@ -87,8 +105,8 @@ class AssignmentsViewController: UIViewController, UITableViewDelegate, UITableV
                     
                     for assignment in assignmentJson! {
                         
-                        if  let assignmentName = assignment["name"] as? String, assignmentId = assignment["id"] as? Int, assignmentDescription = assignment["description"] as? String {
-                            let newAssignment = Assignment(name: assignmentName, id: assignmentId, description: assignmentDescription)
+                        if  let assignmentName = assignment["name"] as? String, assignmentId = assignment["id"] as? Int, assignmentDescription = assignment["description"] as? String, assignmentUrl = assignment["html_url"] as? String {
+                            let newAssignment = Assignment(name: assignmentName, id: assignmentId, description: assignmentDescription, url: assignmentUrl)
                             self.assignments.append(newAssignment)
                             print("Retrieved assignment \(assignmentName)")
                         }
@@ -114,9 +132,17 @@ class AssignmentsViewController: UIViewController, UITableViewDelegate, UITableV
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "MessagingSegue" {
             if let messagingVC = segue.destinationViewController as? MessagesViewController {
-                if let url = sender as? String {
+                if let assignment = sender as? Assignment {
                     //messagingVC.url = url
-                    messagingVC.sendToSlack(url)
+                    
+                    if let assignmentDescription:String = assignment.getDescription {
+                        let firstLinkInAssignment:String = returnFirstLink(assignmentDescription)
+                        let firstImageInAssignment:String = returnFirstImage(assignmentDescription)
+                        
+                        messagingVC.sendToSlack("A student has requested help with the following assignment: \(assignment.getName): \(assignment.getUrl)", link: firstLinkInAssignment, imageUrl: firstImageInAssignment)
+                    } else {
+                        messagingVC.sendToSlack("A student has requested help with the following assignment: \(assignment.getName): \(assignment.getUrl)")
+                    }
                 }
             }
         }
