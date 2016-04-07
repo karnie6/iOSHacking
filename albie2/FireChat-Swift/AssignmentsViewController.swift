@@ -61,8 +61,6 @@ class AssignmentsViewController: UIViewController, UITableViewDelegate, UITableV
             if (statusCode == 200) {
                 do{
                     let assignmentJson = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments) as? NSMutableArray
-                    print(assignmentJson)
-                    
                     
                     for assignment in assignmentJson! {
                         
@@ -70,8 +68,6 @@ class AssignmentsViewController: UIViewController, UITableViewDelegate, UITableV
                             let newAssignment = Assignment(name: assignmentName, id: assignmentId)
                             self.assignments.append(newAssignment)
                             print("Retrieved assignment \(assignmentName)")
-                            
-                            print(self.assignments.count)
                         }
                     }
                     

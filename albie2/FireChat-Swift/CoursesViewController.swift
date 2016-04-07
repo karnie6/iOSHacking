@@ -8,28 +8,22 @@
 
 import UIKit
 
-class CoursesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class CoursesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet var courses: UICollectionView!
+    //@IBOutlet var courses: UICollectionView!
     
+    @IBOutlet weak var tableView: UITableView!
     var coursesData = [Course]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /* Test Data */
-      //  let course = Course(name: "Test")
-     //   coursesData.append(course)
-    //    let course2 = Course(name: "Test2")
-  //      coursesData.append(course2)
+        self.tableView!.delegate = self
+        self.tableView!.dataSource = self
         
-        self.courses!.delegate = self
-        self.courses!.dataSource = self
+        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
         downloadCourseData()
-      //  print("DONE downloading")
-//print(coursesData.count)
-        // Do any additional setup after loading the view.
     }
     
     //completed: DownloadComplete
@@ -47,44 +41,20 @@ class CoursesViewController: UIViewController, UICollectionViewDelegate, UIColle
                 do{
                     
                     let coursesJson = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments) as? NSMutableArray
-                    //print(json)
-                    
                     
                     for course in coursesJson! {
-                     
-                    //print(course)
                         if  let courseName = course["name"] as? String, courseId = course["id"] as? Int {
                             let newCourse = Course(name: courseName, id: courseId)
                             self.coursesData.append(newCourse)
                             print("Retrieved course \(courseName)")
-                            
                             print(self.coursesData.count)
-                            //print
-                            
                         }
-//  var newCourse = Course(name: course["name"])
-                        
-                       // print(course["name"]!);
-                       // let course as? Dictionary<String, AnyObject>
-                        
-                        
 
-                    
-                    
                     }
                     
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.courses.reloadData()
+                        self.tableView.reloadData()
                     })
-                    
-                    //self.courses.reloadData()
-                    
-                 /*   dispatch_async(dispatch_get_main_queue(), ^{
-                        self.collectionView.reloadData()
-                        }); */
-
-                    //json.
-                 
                     
                 }catch {
                     print("Error with Json: \(error)")
@@ -97,8 +67,36 @@ class CoursesViewController: UIViewController, UICollectionViewDelegate, UIColle
     
         task.resume()
     }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.coursesData.count;
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        
+        if let cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell")! as UITableViewCell {
+            
+            cell.textLabel?.text = self.coursesData[indexPath.row].getName
+            cell.contentView.layer.borderWidth = 1;
+            return cell
+        }
+        
+        return UITableViewCell()
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        var course: Course!
 
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        course = coursesData[indexPath.row]
+        
+        performSegueWithIdentifier("AssignmentSegue", sender: course)
+
+
+        print("You selected cell #\(indexPath.row)!")
+    }
+
+   /* func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CourseCell", forIndexPath: indexPath) as? CourseCell {
             
             let course : Course!
@@ -133,7 +131,7 @@ class CoursesViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSizeMake(355, 85)
-    }
+    } */
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "AssignmentSegue" {
