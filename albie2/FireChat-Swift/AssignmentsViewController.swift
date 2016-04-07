@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kanna
 
 class AssignmentsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -45,7 +46,29 @@ class AssignmentsViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("You selected cell #\(indexPath.row)!")
+        var assignment: Assignment!
+        
+        assignment = assignments[indexPath.row]
+        
+        if let assignmentDescription:String = assignment?.getDescription {
+            let assignmentUrl:String = returnFirstLink(assignmentDescription)
+            performSegueWithIdentifier("MessagingSegue", sender: assignmentUrl)
+        }
+    }
+    
+    func returnFirstLink(assignmentDescription: String) -> String {
+        if let doc = Kanna.HTML(html: assignmentDescription, encoding: NSUTF8StringEncoding) {
+            //print(doc.title)
+            
+            // Search for nodes by XPath
+            for link in doc.xpath("//a | //link") {
+                if let assignmentHref:String = link["href"]! {
+                    return assignmentHref
+                }
+            }
+        }
+        
+        return ""
     }
     
     func downloadAssignmentData() {
@@ -64,8 +87,8 @@ class AssignmentsViewController: UIViewController, UITableViewDelegate, UITableV
                     
                     for assignment in assignmentJson! {
                         
-                        if  let assignmentName = assignment["name"] as? String, assignmentId = assignment["id"] as? Int {
-                            let newAssignment = Assignment(name: assignmentName, id: assignmentId)
+                        if  let assignmentName = assignment["name"] as? String, assignmentId = assignment["id"] as? Int, assignmentDescription = assignment["description"] as? String {
+                            let newAssignment = Assignment(name: assignmentName, id: assignmentId, description: assignmentDescription)
                             self.assignments.append(newAssignment)
                             print("Retrieved assignment \(assignmentName)")
                         }
@@ -86,6 +109,17 @@ class AssignmentsViewController: UIViewController, UITableViewDelegate, UITableV
         }
         
         task.resume()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "MessagingSegue" {
+            if let messagingVC = segue.destinationViewController as? MessagesViewController {
+                if let url = sender as? String {
+                    //messagingVC.url = url
+                    messagingVC.sendToSlack(url)
+                }
+            }
+        }
     }
 
     /*

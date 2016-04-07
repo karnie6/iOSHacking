@@ -12,6 +12,7 @@ import Foundation
 class MessagesViewController: JSQMessagesViewController {
     
     var user: FAuthData?
+    var url: String?
     
     var messages = [Message]()
     var avatars = Dictionary<String, UIImage>()
@@ -44,6 +45,11 @@ class MessagesViewController: JSQMessagesViewController {
          //   print(text)
          //   print(sender)
          //   print(imageUrl)
+            
+            if self.url != nil {
+                print("HERE!!")
+                print(self.url)
+            }
             
             let message = Message(text: text, sender: sender, imageUrl: imageUrl)
             self.messages.append(message)
@@ -143,7 +149,7 @@ class MessagesViewController: JSQMessagesViewController {
         // prepare json data
         
         do {
-            let json = [ "text":text ]
+            let json = [ "text":text, "unfurl_links": true, "unfurl_media": true ]
             let jsonData = try NSJSONSerialization.dataWithJSONObject(json, options: .PrettyPrinted)
         
             // create post request

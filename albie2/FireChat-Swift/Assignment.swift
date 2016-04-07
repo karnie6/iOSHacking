@@ -21,6 +21,10 @@ class Assignment {
     var getId: Int {
         return self.id
     }
+    
+    var getDescription: String {
+        return self.description
+    }
 
     init(name: String, id: Int) {
         self.name = name;

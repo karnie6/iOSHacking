@@ -47,7 +47,7 @@ class CoursesViewController: UIViewController, UITableViewDelegate, UITableViewD
                             let newCourse = Course(name: courseName, id: courseId)
                             self.coursesData.append(newCourse)
                             print("Retrieved course \(courseName)")
-                            print(self.coursesData.count)
+                          //  print(self.coursesData.count)
                         }
 
                     }
@@ -91,47 +91,7 @@ class CoursesViewController: UIViewController, UITableViewDelegate, UITableViewD
         course = coursesData[indexPath.row]
         
         performSegueWithIdentifier("AssignmentSegue", sender: course)
-
-
-        print("You selected cell #\(indexPath.row)!")
     }
-
-   /* func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CourseCell", forIndexPath: indexPath) as? CourseCell {
-            
-            let course : Course!
-            
-            course = coursesData[indexPath.row]
-            
-          //          let course = Course(name: "Test")
-            cell.configureCell(course)
-            return cell
-        }
-        
-        return UICollectionViewCell()
-    }
-    
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        
-        var course: Course!
-        
-        course = coursesData[indexPath.row]
-        
-        performSegueWithIdentifier("AssignmentSegue", sender: course)
-        
-    }
-    
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return coursesData.count
-    }
-    
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(355, 85)
-    } */
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "AssignmentSegue" {
